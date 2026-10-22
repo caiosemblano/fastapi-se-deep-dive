@@ -7,7 +7,9 @@ authors = [
     { name = "Caio Semblano", email = "semblanocaio@gmail.com" }
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "fastapi[standard]>=0.161.1",
+]
 
 [project.scripts]
 fastapi-se-deep-dive = "fastapi_se_deep_dive:main"
