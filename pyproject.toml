@@ -23,4 +23,6 @@ dev = [
     "ruff>=0.17.2",
 ]
 
-[tool]
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
