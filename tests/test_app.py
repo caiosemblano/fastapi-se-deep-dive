@@ -2,10 +2,22 @@ from fastapi.testclient import TestClient
 
 from fastapi_se_deep_dive.app import app
 
-client = TestClient(app)
+
 
 
 def test_app():
-    response = client.get("/")
+    """
+    3 steps test (AAA) for main (app)
+    A: Arrange
+    A: Act
+    A: Assert
+    """
 
-    assert response.json() == {"message": "Hello World"}
+    #Arrange
+    client = TestClient(app)
+
+    #Act
+    response = client.get('/')
+
+    #Assert
+    assert response.json() == {'message': 'Hello World'}
