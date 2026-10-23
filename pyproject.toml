@@ -9,7 +9,6 @@ authors = [
 requires-python = ">=3.15"
 dependencies = [
     "fastapi[standard]>=0.161.1",
-    "typos>=1.51.1",
 ]
 
 [project.scripts]
@@ -24,6 +23,8 @@ dev = [
     "ruff>=0.17.2",
     "pytest (>=9.1.1,<10.0.0)",
     "pytest-cov (>=7.1.0,<8.0.0)",
+    "taskipy>=1.14.1",
+    "typos>=1.51.1",
 ]
 
 [tool.ruff]
@@ -40,7 +41,16 @@ quote-style = 'single'
 
 [tool.pytest]
 pythonpath = ['.']
-addopts = ['-p', 'no:warnings', '--cov=fast_zero', '--cov-context=test']
+addopts = ['-p', 'no:warnings', '--cov=src/fastapi_se_deep_dive', '--cov-context=test']
 
 [tool.typos.files]
 extend-exclude = ["*.md", "migrations"]
+
+[tool.taskipy.tasks]
+lint = "ruff check ."
+format = "ruff format ."
+run = "fastapi dev src/fastapi_se_deep_dive/app.py"
+test = "pytest -s -x --cov=src/fastapi_se_deep_dive --cov-context=test"
+format-check = "typos check ."
+format-fix = "typos fix ."
+lint-fix = "ruff check --fix ."
