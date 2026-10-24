@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi_se_deep_dive.schemas import (
     Message,
     UserDB,
+    UserList,
     UserPublic,
     UserSchema,
 )
@@ -32,6 +33,11 @@ def create_user(user: UserSchema):
     return user_with_id
 
 
-@app.delete('/users')
+@app.delete('/users/')
 def delete_user(userDB: int):
     return
+
+
+@app.get('/users/', status_code=HTTPStatus.OK, response_model=UserList)
+def read_users():
+    return {'users': database}
