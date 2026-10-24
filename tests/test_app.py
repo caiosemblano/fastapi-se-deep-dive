@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+from http import HTTPStatus
 
 from fastapi_se_deep_dive.app import app
 
@@ -21,3 +22,4 @@ def test_app():
 
     #Assert
     assert response.json() == {'message': 'Hello World'}
+    assert response.status_code == HTTPStatus.OK
