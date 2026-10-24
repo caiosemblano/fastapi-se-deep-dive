@@ -12,6 +12,6 @@ def main():
     return {'message': 'Hello World'}
 
 
-@app.post('/users/')
+@app.post('/users/', status_code=HTTPStatus.CREATED)
 def create_user(user: UserSchema):
     return user
