@@ -60,3 +60,9 @@ def test_update_user(client):
         'email': 'redis@gmail.com',
         'username': 'Redisiano',
     }
+
+
+def test_delete_user(client):
+    response = client.delete('/users/1')
+
+    assert response.status_code == HTTPStatus.NO_CONTENT

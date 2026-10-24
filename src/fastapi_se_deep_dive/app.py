@@ -29,9 +29,14 @@ def create_user(user: UserSchema):
     return user_with_id
 
 
-@app.delete('/users/')
-def delete_user(userDB: int):
-    return
+@app.delete('/users/{user_id}', status_code=HTTPStatus.NO_CONTENT)
+def delete_user(user_id: int):
+    if user_id < 1 or user_id > len(database):
+        raise HTTPException(
+            status_code=HTTPStatus.NOT_FOUND, detail='User not found'
+        )
+
+    return database.pop(user_id - 1)
 
 
 @app.get('/users/', status_code=HTTPStatus.OK, response_model=UserList)
